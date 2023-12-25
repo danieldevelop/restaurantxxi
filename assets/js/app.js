@@ -1,3 +1,17 @@
+function showMessage(mensaje, tipo) {
+    let Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000
+    });
+
+    Toast.fire({ icon: tipo, title: mensaje });
+};
+
+
+
+
 $(document).ready(() => {
 
     $('#login-form').submit((e) => {
@@ -34,7 +48,7 @@ $(document).ready(() => {
                             break;
                     }
                 } else if (res && res['estado'] === 'fail') {
-                    Swal.fire({ icon: 'error', title: 'Oops...', text: res['mensaje'] });
+                    showMessage(res['mensaje'], 'error');
                 }
             },
             error: (xhr, status, error) => {
